@@ -1,0 +1,17 @@
+INICIO
+	INTEIRO		: intQtdBatatas=0, intQtdBatatasNaPanela=0;
+	LÓGICO		: bolSaiaClara=F, bolAvental = F;
+ 	LEIA("Quantas batatas devo descascar?",intQtdBatatas); 
+	LEIA("A Saia é clara?",bolSaiaClara);
+	IMPRIMA("Peguei a cesta com babatas do porão");
+	IMPRIMA("Peguei a panela do armario");	
+	SE bolSaiaClara = V ENTÃO
+      		bolAvental <- V;
+	FIM-SE 
+	ENQUANTO intQtdBatatas > 0 FAÇA
+		intQtdBatatas <- intQtdBatatas - 1;
+		intQtdBatatasNaPanela <- intQtdBatatasNaPanela + 1;
+   	FIM-ENQUANTO
+	IMPRIMA("Decasquei ",intQtdBatatasNaPanela," batatas.")
+	IMPRIMA("Devolvi a cesta para o porão";)
+FIM	
