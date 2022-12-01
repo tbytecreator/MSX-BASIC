@@ -1,0 +1,7 @@
+TIPO			SIMBOLO	TAMANHO 			CUSTO
+------------------------------------------------------------------------
+Inteiro		        %	1 byte			    de -32768 até 32767 
+Precisão simples	!	4 bytes 			numeros reais com 6 digitos
+Precisão dupla	    #	8 bytes 			números reais com 14 digitos
+String		        $	até 255 letras		Até 255 bytes 
+------------------------------------------------------------------------
