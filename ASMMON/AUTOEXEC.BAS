@@ -1,7 +1,7 @@
-1000 CLS:?"Monitor MSX 1986":?"Milton Maldonado Jr.":?"Modificado por Manoel Neto 2022-12-19"
-1001 ?"Comandos: (D)ump &HXXXX, (M)odify &HXXXX,(L)oad XXXX (EM DECIMAL)"
+1000 CLS:KEY OFF:?"Monitor MSX 1986":?"Milton Maldonado Jr.":?"Modificado por Manoel Neto 2022-12-19"
+1001 ?"Comandos: (D)ump &HXXXX, (M)odify &HXXXX,(L)oad XXXX (EM DECIMAL),(E)nd"
 1010 ?:LINE INPUT">";A$:IF LEN(A$)=0 THEN 1010
-1020 C$=MID$(A$,1,1):IF C$="L"THEN 1130 ELSE IF C$="D" THEN 1030 ELSE IF C$="M" THEN 1060 ELSE BEEP:?"?";:GOTO 1010
+1020 C$=MID$(A$,1,1):IF C$="L"THEN 1130 ELSE IF C$="D" THEN 1030 ELSE IF C$="M" THEN 1060 ELSE IF C$="E" THEN END ELSE BEEP:?"?";:GOTO 1010
 1030 E=VAL(MID$(A$,2))
 1040 FOR J=1 TO 8
 1041   ? RIGHT$("0000"+HEX$(E),4);" ";
