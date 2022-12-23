@@ -13,7 +13,7 @@
 1043     ? RIGHT$("00"+HEX$(PEEK(I+E)),2);" ";
 1044   NEXT I
 1045   FOR I=0 TO 3
-1046     ? CHR$(PEEK(I+E));" ";
+1046     IF PEEK(I+E)>32 THEN ? CHR$(PEEK(I+E));" "; ELSE ?" ";
 1047   NEXT I
 1048   ?
 1049   E=E+4
@@ -94,12 +94,12 @@
 2020 DATA LD,CP,IN,I,D, ,R 
 3000 ' ROTINA DE HELP 
 3001 ?"====================================="
-3002 ?"MSX ASM Monitor"
-3003 ?"Modificado por Manoel Neto 2022-12-19"
+3002 ?"TByteCreator ASM Monitor"
+3003 ?"Manoel Neto 2022-12-19"
 3004 ?"Comandos:"
-3005 ?"(D)ump &HXXXX"
-3006 ?"(M)odify &HXXXX"
-3007 ?"(L)oad XXXX (EM DECIMAL)"
+3005 ?"(D)ump   =>endereço em hexa XXXX"
+3006 ?"(M)odify =>endereço em hexa XXXX"
+3007 ?"(L)oad   =>XXXX (EM DECIMAL)"
 3008 ?"(E)nd"
 3009 ?"(?) Este HELP!"
 3010 ?"====================================="
