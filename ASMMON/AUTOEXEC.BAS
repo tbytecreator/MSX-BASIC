@@ -1,5 +1,5 @@
 1000 SCREEN 0:CLS
-1001 KEY 1,"D &H":KEY 2,"M &H":KEY 3,"L ":KEY 5,"E"+CHR$(13):KEY 4,"?"+CHR$(13)
+1001 KEY 1,"D &H":KEY 2,"M &H":KEY 3,"L &H":KEY 5,"E"+CHR$(13):KEY 4,"?"+CHR$(13)
 1004 ' FAZ O HELP E PEDE UM COMANDO NO PROMPT
 1005 GOSUB 3000: ' DA O PRIMEIRO HELP 
 1010 ?:LINE INPUT">";A$:IF LEN(A$)=0 THEN 1010
@@ -78,7 +78,7 @@
 1410 IF C>127 AND C<192 THEN X=C\8-16:Y=C MOD 8:PRINT A$(X);:IF X=0 OR X=1 OR X=3 THEN ?" A,";ELSE PRINT" " ELSE 1430 
 1420 PRINT B$(Y);:I=1:RETURN 
 1430 IF C\64>0 THEN 1570
-1440 IF C=34 THEN E=E+SGN(F):?"LD (";:GOSUB 1360:?"),";C$(2);:ELSE IF C=42 THEN E=E+SFN(F):?"LD ";C$(2);",(";:GOSUB 1360:?")";:ELSE 1460
+1440 IF C=34 THEN E=E+SGN(F):?"LD (";:GOSUB 1360:?"),";C$(2);:ELSE IF C=42 THEN E=E+SGN(F):?"LD ";C$(2);",(";:GOSUB 1360:?")";:ELSE 1460
 1450 E=E-SGN(F):RETURN
 1460 IF C=50 THEN ?"LD (";:GOSUB 1360:?"),A";ELSE IF C=58 THEN PRINT"LD A,(";:GOSUB 1360:?")";:RETURN ELSE 1480
 1470 I=3:RETURN 
@@ -145,7 +145,7 @@
 3005 ?"Comandos:"
 3006 ?"(D)ump   =>endereco em hexa &HXXXX"
 3007 ?"(M)odify =>endereco em hexa &HXXXX"
-3008 ?"(L)oad   =>endereco em decimal XXXX"
+3008 ?"(L)oad   =>endereco em hexa &HXXXX"
 3009 ?"(E)nd"
 3010 ?"(?) Este HELP!"
 3011 ?"====================================="
