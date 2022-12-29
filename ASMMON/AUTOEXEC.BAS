@@ -40,14 +40,14 @@
 1144 READ G$(0),G$(1),G$(2),H$(0),H$(1),H$(2),I$(0),I$(1),J$(0),J$(1)
 1150 FOR K=1 TO 20
 1151   C=PEEK(E)
-1160   ? USING "#####";E;:? " ";:GOSUB 1190:IF F>0 THEN I=I+1
+1160   ? USING "#####";E;:?" ";:GOSUB 1190:IF F>0 THEN I=I+1
 1170   ? TAB(22);
 1171   FOR X=0 TO I-1
 1172     I$=HEX$(PEEK(X+E))
 1173     IF LEN(I$)<2 THEN I$="0"+I$
 1180     ? I$;" ";
 1181   NEXT X
-1182   ?:E=E+1
+1182   ?:E=E+I
 1183 NEXT K
 1184 ?
 1185 I$=INPUT$(1):IF I$=CHR$(27) THEN 1010 ELSE 1150 
@@ -102,7 +102,7 @@
 1650 IF X=0 THEN ?"RET ";D$(C\8-24);:I=1:RETURN
 1660 IF X=2 THEN ?"JP ";ELSE ?"CALL ";
 1670 ? D$(C\8-24);",";:GOTO 1360
-1680 IF F=0 AND C\64=1 THEN X=(C-64)\8:?"LD ";B$(X);:X=(C-64 MOD 8):?",";B$(X);:I=1:RETURN
+1680 IF F=0 AND C\64=1 THEN X=(C-64)\8:?"LD ";B$(X);:X=(C-64) MOD 8:?",";B$(X);:I=1:RETURN
 1690 I=2:C=PEEK(E+1):IF F>0 AND C MOD 8=6 AND C>63 THEN ?"LD ";B$(C\8-8);",(";C$(2);"+";:E=E+1:GOSUB 1610:?")"; ELSE 1710
 1700 E=E-1:RETURN
 1710 IF C\8=14 THEN E=E+1:?"LD (";C$(2);"+";:GOSUB 1610:PRINT "),"; B$(C-112);ELSE 1730
@@ -142,12 +142,12 @@
 3002 ?"TByteCreator ASM Monitor"
 3003 ?"Manoel Neto 2022-12-19"
 3004 ?"====================================="
-3005 ?"Comandos:"
-3006 ?"(D)ump   =>endereco em hexa &HXXXX"
-3007 ?"(M)odify =>endereco em hexa &HXXXX"
-3008 ?"(L)oad   =>endereco em hexa &HXXXX"
-3009 ?"(E)nd"
-3010 ?"(?) Este HELP!"
+3005 ?"Comandos:                            "
+3006 ?"(D)ump   =>endereco em hexa    &HXXXX"
+3007 ?"(M)odify =>endereco em hexa    &HXXXX"
+3008 ?"(L)oad   =>endereco em decimal XXXXXX"
+3009 ?"(E)nd                                "
+3010 ?"(?) Este HELP!                       "
 3011 ?"====================================="
 3012 RETURN
 4000 ' FINALIZA O PROGRAMA
