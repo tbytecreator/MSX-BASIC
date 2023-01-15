@@ -7,4 +7,3 @@
  3. Instalar as System ROMS do OpenMSX.
  4. Abrir um novo terminal 
  5 (Windows). Rodar o make.bat
- 5 (Linux). Rodar bash make.sh
