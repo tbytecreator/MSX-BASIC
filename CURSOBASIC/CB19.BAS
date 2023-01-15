@@ -6,4 +6,4 @@
 60   R=RND(1)*40
 70   CIRCLE(X,Y),R,RND(1)*15
 80 NEXT I 
-90 GOTO 90 
+

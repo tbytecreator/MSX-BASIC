@@ -1,4 +1,4 @@
-0010 SCREEN 0:WIDTH 40:KEY 1,"CLS:LIST"+CHR$(13):CLS 
+0010 SCREEN 0:WIDTH 40:KEY OFF:CLS 
 0020 ?"================================="
 0030 ?"PROGRAMAS DO LIVRO CURSO DE BASIC"
 0040 ?"================================="
