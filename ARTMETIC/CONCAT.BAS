@@ -1,0 +1,3 @@
+10 A$="COMPUTADOR "
+20 B$="MSX"
+30 ? A$+B$
