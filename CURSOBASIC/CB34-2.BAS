@@ -1,0 +1,6 @@
+10 CLS
+20 ?"ESTE",
+30 ?"TEXTO",
+40 ?"SERVE",
+50 ?"COMO",
+60 ?"TESTE",
