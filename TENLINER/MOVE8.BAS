@@ -1,3 +1,0 @@
-10 ' Move sprite to 8-directions by using cursor keys (by NYYRIKKI)
-20 FORI=2TO8:XD(I)=SGN(5-I):YD(8-I)=XD(I):NEXT: SWAP YD(0),YD(8):SCREEN2,1:SPRITE$(0)="0HH0"
-30 FORI=0TO1:S=STICK(J):I=-STRIG(J):X=X+XD(S):Y=Y+YD(S):PUTSPRITE0,(X,Y),8:NEXT
