@@ -8,8 +8,13 @@
  4. Abrir um novo terminal 
  5 (Windows). Rodar o make.bat
 ------------------------------------------------------------------------------------------------
+# ARTMETIC
 
-#TENLINER
+Exemplos em BASIC para a aula de operadores aritiméticos no canal do Youtube @tbytecreator
+
+Link para a video aula: https://www.youtube.com/watch?v=dJsKIclpTys
+
+# TENLINER
 
 Jogo em MSX BASIC para disputar o 10Liner Contest 2023. 
 https://gkanold.wixsite.com/homeputerium
