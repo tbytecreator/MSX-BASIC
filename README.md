@@ -6,13 +6,19 @@
  2. Instalar o OpenMSX. https://www.youtube.com/watch?v=i87FzL9__sA&list=PLM6UACsvLoSCeVKUjZDFQ1GjR-fLZe9ws&index=4
  3. Instalar as System ROMS do OpenMSX.
  4. Abrir um novo terminal 
- 5 (Windows). Rodar o make.bat
+ 5. (Windows). Rodar o make.bat
 ------------------------------------------------------------------------------------------------
 # ARTMETIC
 
 Exemplos em BASIC para a aula de operadores aritiméticos no canal do Youtube @tbytecreator
 
 Link para a video aula: https://www.youtube.com/watch?v=dJsKIclpTys
+
+# ASMMON
+
+Montador Assembly escrito em MSX BASIC. Originalmente publicado no livro Linguagem de Máquina MSX, promovi algumas melhorias para modernizar o código dos anos 80. 
+
+Link para o vídeo explicativo: https://www.youtube.com/watch?v=EWpW-2WMqBI
 
 # TENLINER
 
