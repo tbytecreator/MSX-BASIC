@@ -1,24 +1,37 @@
 # MSX-BASIC
+
  Exemplos em BASIC
  
- Para executar um exemplo usando Visual Studio Code, você deve: 
+ Para executar um exemplo usando Visual Studio Code, você deve:
+
  1. Instalar o VSCode. :-) https://www.youtube.com/watch?v=KXsgNofsCfY&list=PLM6UACsvLoSCeVKUjZDFQ1GjR-fLZe9ws&index=1 
  2. Instalar o OpenMSX. https://www.youtube.com/watch?v=i87FzL9__sA&list=PLM6UACsvLoSCeVKUjZDFQ1GjR-fLZe9ws&index=4
  3. Instalar as System ROMS do OpenMSX.
  4. Abrir um novo terminal 
  5. (Windows). Rodar o make.bat
-------------------------------------------------------------------------------------------------
+
+
 # ARTMETIC
 
 Exemplos em BASIC para a aula de operadores aritiméticos no canal do Youtube @tbytecreator
 
-Link para a video aula: https://www.youtube.com/watch?v=dJsKIclpTys
+Link para a vídeo aula: https://www.youtube.com/watch?v=dJsKIclpTys
 
 # ASMMON
 
 Montador Assembly escrito em MSX BASIC. Originalmente publicado no livro Linguagem de Máquina MSX, promovi algumas melhorias para modernizar o código dos anos 80. 
 
 Link para o vídeo explicativo: https://www.youtube.com/watch?v=EWpW-2WMqBI
+
+# CURSOBASIC
+
+Códigos fonte do livro Curso de BASIC MSX Volume 1. O nome do arquivo representa a página do livro onde o código está. Possui um pequeno loader para cada código do livro. 
+
+# DESCASCA
+
+Implementação do algorítimo descascador de batatas em MSX BASIC.
+
+Link para a vídeo aula: https://www.youtube.com/watch?v=z2sac3H9k6Q
 
 # TENLINER
 
