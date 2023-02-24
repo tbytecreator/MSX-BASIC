@@ -14,8 +14,16 @@
 1010 ?"EXEMPLOS DE OPERADORES          " 
 1020 ?"LOGICOS                         "
 1030 ?"================================"
-1040 OP$=INPUT$(1) 
-1050 RETURN
+1040 A=-1:B=0
+1050 ?"NOT B           ?";NOT B
+1060 ?"A AND B         ?";A AND B
+1070 ?"A OR B          ?";A OR B
+1080 ?"A XOR B         ?";A XOR B
+1090 ?"A EQV B         ?";A EQV B
+1100 ?"A IMP B         ?";A IMP B
+1110 ?"================================"
+1120 OP$=INPUT$(1) 
+1130 RETURN
 2000 ?"================================"
 2010 ?"EXEMPLOS DE OPERADORES          " 
 2020 ?"RELACIONAIS                     "
