@@ -1,0 +1,19 @@
+10 COLOR 15,1,1:SCREEN 2,1
+20 GOSUB 1000 : ' LOAD SPRITE PATTERNS
+30 IF S=0 THEN S=1 ELSE S=0
+40 PUTSPRITE 0,(0,0),4,S 
+50 IF TIME<20 THEN 50 ELSE TIME=0
+60 GOTO 30
+1000 ' ******************************'
+1010 ' LOAD SPRITES TO VDP           '
+1020 ' ******************************'
+1030 S=BASE(9)
+1040 READ R$
+1050 IF R$="*" THEN RETURN ELSE VPOKE S,VAL("&H"+R$):S=S+1
+1060 GOTO 1040 
+9000 ' ******************************'
+9010 ' SPRITE PATTERNS DATA          '
+9020 ' ******************************'
+9030 DATA 18,3C,7E,DB,FF,24,5A,A5
+9040 DATA 18,3C,7E,DB,FF,5A,81,42
+9050 DATA *
