@@ -2,10 +2,14 @@
 0020 ?"================================="
 0030 ?"PROGRAMAS GRAFICOS               "
 0040 ?"================================="
-0050 ?"(C)ORES                          "
+0050 ?"(T)ELAS                          "
+0060 ?"(C)ORES                          "
+0070 ?"(S)TAR                           "
 0999 ?"(E)ND                            "
 1000 ?"================================="
 1010 ?">";:OP$=INPUT$(1)
 1020 IF OP$="C" OR OP$="c" THEN RUN"CORES.BAS"
+1030 IF OP$="T" OR OP$="t" THEN RUN"TELAS.BAS"
+1030 IF OP$="S" OR OP$="s" THEN RUN"STAR.BAS"
 1999 IF OP$="E" OR OP$="e" THEN END
 2000 GOTO 10
