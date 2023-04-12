@@ -1,0 +1,27 @@
+100 ' ********************************
+110 ' EXEMPLO DE ANIMACAO DE SPRITES
+120 ' ********************************
+130 COLOR 15,1,1
+140 SCREEN 2,1
+150 DEFINT A-Z
+160 GOSUB 1000 : ' CARREGA SPRITES 
+170 IF S=0 THEN S=1 ELSE S=0
+180 PUTSPRITE 0,(20,0),4,S 
+181 PUTSPRITE 1,(40,0),4,S
+182 PUTSPRITE 2,(60,0),4,S
+183 PUTSPRITE 3,(80,0),4,S  
+190 IF TIME<20 THEN 190 ELSE TIME=0
+200 GOTO 170
+1000 ' ******************************'
+1010 ' LOAD SPRITES TO VDP           '
+1020 ' ******************************'
+1030 S=BASE(9)
+1040 READ R$
+1050 IF R$="*" THEN RETURN ELSE VPOKE S,VAL("&H"+R$):S=S+1
+1060 GOTO 1040 
+9000 ' ******************************'
+9010 ' SPRITE PATTERNS DATA          '
+9020 ' ******************************'
+9030 DATA 18,3C,7E,DB,FF,24,5A,A5
+9040 DATA 18,3C,7E,DB,FF,5A,81,42
+9050 DATA *
