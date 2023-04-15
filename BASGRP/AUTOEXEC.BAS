@@ -1,4 +1,4 @@
-0010 SCREEN 0:WIDTH 40:KEY OFF:CLS 
+0010 SCREEN 0:WIDTH 40:KEY OFF:CLS:COLOR 15,1,1
 0020 ?"================================="
 0030 ?"PROGRAMAS GRAFICOS               "
 0040 ?"================================="
