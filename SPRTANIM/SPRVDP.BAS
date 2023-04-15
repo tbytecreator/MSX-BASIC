@@ -1,6 +1,10 @@
-100 ' ********************************
-110 ' EXEMPLO DE ANIMACAO DE SPRITES
-120 ' ********************************
+100 ' ********************************'
+110 ' EXEMPLO DE ANIMACAO DE SPRITES  '
+111 ' AQUI TEMOS UMA IMPLEMENTACAO    '
+112 ' MAIS EFICIENTE USANDO A MEMORIA '
+113 ' DO VDP E A IMPLEMENTACAO DE UMA '
+114 ' ANIMACAO BASICA                 '
+120 ' ********************************'
 130 COLOR 15,1,1
 140 SCREEN 2,0
 150 DEFINT A-Z
