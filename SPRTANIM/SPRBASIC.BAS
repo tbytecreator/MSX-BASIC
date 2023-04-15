@@ -1,5 +1,8 @@
 0010 ' ********************************
 0020 ' SPRITES EM BASIC
+0021 ' EXISTE MAIS DE UMA FORMA DE SE 
+0022 ' DEFINIR UM SPRITE, ESTA E A MAIS
+0023 ' BASICA DE TODAS           
 0030 ' ********************************
 0040 COLOR 15,1,1
 0050 SCREEN 2,1
