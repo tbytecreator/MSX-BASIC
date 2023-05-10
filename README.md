@@ -33,6 +33,17 @@ Implementação do algorítimo descascador de batatas em MSX BASIC.
 
 Link para a vídeo aula: https://www.youtube.com/watch?v=z2sac3H9k6Q
 
+# ESTRELA
+
+Implementação do desafio estrela de natal.
+
+Videos relacionados: 
+
+https://www.youtube.com/watch?v=_aQlpJUTKKg
+
+https://www.youtube.com/watch?v=pmeTvfwWH64
+
+
 # TENLINER
 
 Jogo em MSX BASIC para disputar o 10Liner Contest 2023. 
