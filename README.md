@@ -26,7 +26,7 @@ Link para o vídeo explicativo: https://www.youtube.com/watch?v=EWpW-2WMqBI
 # BASGRP
 Códigos usados nas aulas de gráficos básicos no MSX BASIC. 
 
-Video Aulas relacionadas: 
+Video aulas relacionadas: 
 
 https://www.youtube.com/watch?v=aDA2H1Zs37I&list=PLM6UACsvLoSA0NrN_I1yZqhCGyjPaKU8R&index=6
 
