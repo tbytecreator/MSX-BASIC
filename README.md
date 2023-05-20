@@ -8,7 +8,7 @@
  2. Instalar o OpenMSX. https://www.youtube.com/watch?v=i87FzL9__sA&list=PLM6UACsvLoSCeVKUjZDFQ1GjR-fLZe9ws&index=4
  3. Instalar as System ROMS do OpenMSX.
  4. Abrir um novo terminal 
- 5. (Windows). Rodar o make.bat
+ 5. Rodar o make.bat
 
 
 # ARTMETIC
