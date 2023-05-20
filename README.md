@@ -23,6 +23,13 @@ Montador Assembly escrito em MSX BASIC. Originalmente publicado no livro Linguag
 
 Link para o vídeo explicativo: https://www.youtube.com/watch?v=EWpW-2WMqBI
 
+# BASGRP
+Códigos usados nas aulas de gráficos básicos no MSX BASIC. 
+
+Video Aulas relacionadas: 
+https://www.youtube.com/watch?v=aDA2H1Zs37I&list=PLM6UACsvLoSA0NrN_I1yZqhCGyjPaKU8R&index=6
+https://www.youtube.com/watch?v=xGKxtbwZovU&list=PLM6UACsvLoSA0NrN_I1yZqhCGyjPaKU8R&index=8
+
 # CURSOBASIC
 
 Códigos fonte do livro Curso de BASIC MSX Volume 1. O nome do arquivo representa a página do livro onde o código está. Possui um pequeno loader para cada código do livro. 
