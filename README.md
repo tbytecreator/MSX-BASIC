@@ -52,6 +52,14 @@ https://www.youtube.com/watch?v=_aQlpJUTKKg
 
 https://www.youtube.com/watch?v=pmeTvfwWH64
 
+# RELOGIC
+
+Códigos utilizados nas aulas de operadores relacionais e lógicos.
+
+Video relacionados:
+
+https://www.youtube.com/watch?v=HDUohabv6Fg&list=PLM6UACsvLoSA0NrN_I1yZqhCGyjPaKU8R&index=5
+
 
 # TENLINER
 
