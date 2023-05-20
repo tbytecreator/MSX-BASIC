@@ -8,7 +8,7 @@
  2. Instalar o OpenMSX. https://www.youtube.com/watch?v=i87FzL9__sA&list=PLM6UACsvLoSCeVKUjZDFQ1GjR-fLZe9ws&index=4
  3. Instalar as System ROMS do OpenMSX.
  4. Abrir um novo terminal 
- 5. (Windows). Rodar o make.bat
+ 5. Rodar o make.bat
 
 
 # ARTMETIC
@@ -22,6 +22,15 @@ Link para a vídeo aula: https://www.youtube.com/watch?v=dJsKIclpTys
 Montador Assembly escrito em MSX BASIC. Originalmente publicado no livro Linguagem de Máquina MSX, promovi algumas melhorias para modernizar o código dos anos 80. 
 
 Link para o vídeo explicativo: https://www.youtube.com/watch?v=EWpW-2WMqBI
+
+# BASGRP
+Códigos usados nas aulas de gráficos básicos no MSX BASIC. 
+
+Video aulas relacionadas: 
+
+https://www.youtube.com/watch?v=aDA2H1Zs37I&list=PLM6UACsvLoSA0NrN_I1yZqhCGyjPaKU8R&index=6
+
+https://www.youtube.com/watch?v=xGKxtbwZovU&list=PLM6UACsvLoSA0NrN_I1yZqhCGyjPaKU8R&index=8
 
 # CURSOBASIC
 
@@ -42,6 +51,14 @@ Videos relacionados:
 https://www.youtube.com/watch?v=_aQlpJUTKKg
 
 https://www.youtube.com/watch?v=pmeTvfwWH64
+
+# RELOGIC
+
+Códigos utilizados nas aulas de operadores relacionais e lógicos.
+
+Video relacionados:
+
+https://www.youtube.com/watch?v=HDUohabv6Fg&list=PLM6UACsvLoSA0NrN_I1yZqhCGyjPaKU8R&index=5
 
 
 # TENLINER
