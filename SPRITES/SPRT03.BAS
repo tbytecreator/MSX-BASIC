@@ -1,12 +1,12 @@
-10 ' ********************************
-20 ' LIMITES DOS SPRITES EM BASIC    
-30 ' ********************************
-40 ' 8X8   : 256 MODELOS DE SPRITES
-50 ' 16X16 : 64 MODELOS DE SPRITES   
-60 ' ********************************
-70 ' 1. OS SPRITES NAO FUNCIONAM EM 
-80 '    SCREEN 0
-90 ' 2. UM SPRITE POR CAMADA
+010 ' ********************************
+020 ' LIMITES DOS SPRITES EM BASIC    
+030 ' ********************************
+040 ' 8X8   : 256 MODELOS DE SPRITES
+050 ' 16X16 : 64 MODELOS DE SPRITES   
+060 ' ********************************
+070 ' 1. OS SPRITES NAO FUNCIONAM EM 
+080 '    SCREEN 0
+090 ' 2. UM SPRITE POR CAMADA
 100 ' 3. MAXIMO DE 32 CAMADAS
 110 ' 4. APENAS 4 SPRITES POR LINHA
 120 ' 5. O SPRITE NA CAMADA MENOR 
