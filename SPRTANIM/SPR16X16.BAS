@@ -1,0 +1,36 @@
+0010 ' ********************************
+0020 ' SPRITES 16 X 16 
+0030 ' ********************************
+0040 ' EM GERAL SAO A MELHOR OPCAO DE   
+0050 ' SPRITES DETALHADOS. USAM O
+0060 ' PADRAO A SEGUIR NA VRAM  
+0070 ' 1 3
+0080 ' 2 4 
+0090 ' SENDO CADA NUMERO UM BANCO 8X8           
+0100 ' ********************************
+0110 DEFINT A-Z
+0120 COLOR 15,1,1:SCREEN 2,2
+0130 GOSUB 1000 : ' CARREGA SPRITES
+0140 IF S=0 THEN S=1 ELSE S=0
+0150   PUT SPRITE 0,(127,174),4,0
+0160   IF TIME<20 THEN 160 ELSE TIME=0
+0170   OP$=INKEY$
+0180 IF OP$="" THEN 140
+0190 RUN"AUTOEXEC.BAS"
+
+1000 ' ******************************'
+1010 ' CARREGA DIRETO NO VDP         '
+1020 ' ******************************'
+1030 S=BASE(9)
+1040 READ R$
+1050 IF R$="*" THEN RETURN ELSE VPOKE S,VAL("&H"+R$):S=S+1
+1060 GOTO 1040
+
+9000 ' ******************************'
+9010 ' PADRAO DO SPRITE              '
+9020 ' ******************************'
+9030 DATA 00,00,00,00,00,00,01,01
+9040 DATA 07,07,07,7F,FF,FF,FF,FF
+9050 DATA 00,00,00,00,00,00,80,80
+9060 DATA E0,E0,E0,FE,FF,FF,FF,FF
+9070 DATA *

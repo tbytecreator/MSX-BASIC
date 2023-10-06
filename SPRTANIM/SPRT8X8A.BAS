@@ -1,5 +1,5 @@
 0010 ' ********************************
-0020 ' SPRITES 16 X 16 AMPLIADO
+0020 ' SPRITES 8X8 AMPLIADO
 0030 ' ********************************
 0040 ' OS SPRITES DE 8X8 PODEM SER   
 0050 ' DUPLICADOS PASSANDO UM PARAMETRO
