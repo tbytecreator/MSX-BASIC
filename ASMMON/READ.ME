@@ -1,38 +1,40 @@
-===================================================
+======================================
 TByteCreator ASM Monitor
 Criado por Manoel Neto 
 Em 2022-12-19
-===================================================
-Este programa foi publicado originalmente no livro 
-"Linguagem de Máquina MSX", de autoria de Milton 
-Maldonado Jr. e foi alterado para ser usado nas
-aulas de Programação Avançada no canal TByteCreator
+======================================
+Este programa foi publicado 
+originalmente no livro "Linguagem de 
+Máquina MSX", de autoria de Milton 
+Maldonado Jr. e foi alterado para ser 
+usado nas aulas de programação 
+avançada no canal TByteCreator
 
-Para executar o programa é necessário baixar e 
-instalar o emulador OpenMSX em sua máquina.
+As seguintes modificações e melhorias 
+foram adicionadas ao código em 
+2022-12-19:
 
-Para executar o programa abra um terminal no 
-VSCode e digite ./make
+1. O comando DUMP foi alterado para 
+mostrar os caracteres ASCII dos bytes 
+em memória. Com isso são apresentado 
+4 byets por linha (e não 8 como no 
+código original) e seus respectivos 
+caracteres ASCII
 
-As seguintes modificações e melhorias foram 
-adicionadas ao código em 2022-12-19:
+2. Adição dos comandos HELP(?) 
+e END (E)
 
-1. O comando DUMP foi alterado para mostrar os 
-caracteres ASCII dos bytes em memória. Com isso
-são apresentado 4 byets por linha (e não 8 como 
-no código original) e seus respectivos caracteres
-ASCII
+3. As teclas de função do MSX foram 
+alteradas para os comandos do 
+monitor, a saber:
 
-2. Adição dos comandos HELP(?) e END (E)
-
-3. As teclas de função do MSX foram alteradas para 
-os comandos do monitor, a saber:
 FK1 = > DUMP   (D &H)
 FK2 = > MODIFY (M &H)
 FK3 = > LOAD   (L)
 FK4 = > HELP   (?)
 FK5 = > END    (E+<RETURN>)
 
-4. Na saida do programa, limpamos a tela e 
-restauramos as teclas de função.
-===================================================
+4. Na saida do programa, limpamos a 
+tela e restauramos as teclas de 
+função.
+======================================
