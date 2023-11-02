@@ -42,15 +42,14 @@
 0540 IF X>239 THEN X=239
 0550 IF Y<0 THEN Y=0
 0560 IF Y>174 THEN Y=174
-
-0700 ' ******************************'
-0710 ' DETERMINA OS LIMITES DA TELA  '
-0720 ' ******************************'
-0730 SPRITE OFF
-0740   PUT SPRITE 0,(X,Y),4,0
-0750 SPRITE ON
-0760 IF TIME<2 GOTO 760 ELSE TIME=0
-0770 GOTO 300
+0570 ' ******************************'
+0580 ' DESENHA OS SPRITES            '
+0590 ' ******************************'
+0600 SPRITE OFF
+0610   PUT SPRITE 0,(X,Y),4,0
+0620 SPRITE ON
+0630 IF TIME<2 GOTO 760 ELSE TIME=0
+0640 GOTO 300
 
 1000 ' ******************************'
 1010 ' CARREGA DIRETO NO VDP         '
