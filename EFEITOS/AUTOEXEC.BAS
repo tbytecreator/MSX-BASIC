@@ -4,12 +4,18 @@
 0040 ?"==========================="
 0050 ?"(1)ALARME                  "
 0060 ?"(2)ATERRISAGEM             "
-0110 ?"(3)DECOLAGEM               "
-0120 ?"(4)SIRENE                  "
-0130 ?"==========================="
-0140 ?">";:OP$=INPUT$(1)
-0150 IF OP$="1" THEN RUN"ALARME1.BAS"
-0160 IF OP$="2" THEN RUN"ATERR.BAS"
-0170 IF OP$="3" THEN RUN"DECOLAGEM.BAS"
-0180 IF OP$="4" THEN RUN"SIRENE.BAS"
-0190  GOTO 10
+0070 ?"(3)DECOLAGEM               "
+0080 ?"(4)SIRENE                  "
+0090 ?"(5)GET COIN                "
+0100 ?"(6)EXPLOSION               "
+0110 ?"(7)teste.bas               "
+0200 ?"==========================="
+0210 ?">";:OP$=INPUT$(1)
+0220 IF OP$="1" THEN RUN"ALARME1.BAS"
+0230 IF OP$="2" THEN RUN"ATERR.BAS"
+0240 IF OP$="3" THEN RUN"DECOLAGEM.BAS"
+0250 IF OP$="4" THEN RUN"SIRENE.BAS"
+0260 IF OP$="5" THEN RUN"GETCOIN.BAS"
+0270 IF OP$="6" THEN RUN"EXPLSION.BAS"
+0280 IF OP$="7" THEN RUN"TESTE.BAS"
+0999  GOTO 10
