@@ -38,7 +38,7 @@
 0600 ' ******************************'
 0610 ' DESENHA OS SPRITES            '
 0620 ' ******************************'
-0630 ' IF TIME<1 GOTO 630
+0630 IF TIME<1 GOTO 630
 0640 SPRITE OFF
 0650   PUT SPRITE 0,(X,Y),2,0
 0660   PUT SPRITE 1,(X,Y),8,1
