@@ -25,7 +25,7 @@
 0260 STRIG(0) ON
 0270 X=127:Y=174:V=16 :'HEROI
 0280 TX=0:TY=0:TV=16:TC=0 :'TORPEDO
-0290 TIME=0:AN=2:CM=1:VX=20:VY=20
+0290 TIME=0:AN=2:CM=1:VX=1:VY=20
 0300 FOR I = 0 TO 4
 0310    FOR J = 0 TO 3
 0320        EX(I,J)=16+J*20
@@ -91,7 +91,7 @@
 4010 ' TRATA TORPEDO                 '
 4020 ' ******************************'
 4030 TY = TY - TV
-4040 IF TY < 0 THEN TC = 0
+4040 IF TY <= 0 THEN TY = -20:TC=0
 4999 RETURN
 
 5000 ' ******************************'
