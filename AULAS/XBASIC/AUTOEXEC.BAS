@@ -1,0 +1,8 @@
+0010 ' ===============================
+0020 ' LOADER ALIEMINATION
+0030 ' MANOEL NETO 2024
+0040 ' ===============================
+0050 SCREEN 2
+0060 BLOAD"LDRSCR.SC2",S
+0070 BLOAD "XBASIC.BIN",R
+0080 LOAD "ALNATION.BAS",R
