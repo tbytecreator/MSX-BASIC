@@ -1,0 +1,38 @@
+-------------------------------------------------
+HOT-ASM em disco
+-------------------------------------------------
+Para gravar um arquivo texto do programa HOT-ASM 
+em disco, siga este procedimento:
+1 ' Gere o texto usando o HOT-ASM
+2 ' Peca a funcao MAP
+3 ' Chame o BASIC
+4 ' Grave o texto em disco usando
+    BSAVE"A:NOME.HAS",INIC,FIM onde:
+          INIC= &H8100
+          FIM = end. final
+          HAS = ext. do HOT-ASM
+5 ' Salve no disco os dados da funcao
+    MAP com o nome do arquivo
+Para ler, siga este procedimento:
+1 ' Leia o texto com BLOAD"A:NOME.HAS"
+2 ' Leia os dados da funcao MAP no
+    arquivo gerado como acima
+3 ' Chame o editor do HOT-ASM com CALL
+    EDT
+4 ' Chame a funcao 'M EC00' do editor
+    do HOT-ASM e modifique os dados dos
+    seguintes enderecos:
+           &HEC00 - 3D
+           &HEC01 - 00
+           &HEC02 - 81
+           &HEC03 - LSB-1
+           &HEC04 - MSB
+5 ' MSB e LSB do endereco final dado
+    pela funcao MAP
+-------------------------------------------------
+Trava listagem
+-------------------------------------------------
+Esse poke trava a listagem de programas BASIC.
+POKE &HFF89,&HC1
+Este destrava:
+POKE &HFF89,&HC0
