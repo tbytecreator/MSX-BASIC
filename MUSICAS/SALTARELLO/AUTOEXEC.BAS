@@ -1,7 +1,7 @@
 010 ' SALTARELLO
-020 PLAY"v10t180","v9t180"
-030 PLAY"o418deL4f#g","l4oido2ao3d"
-040 PLAY"o412al4bgea","l4oido2ao3doido2ao3d"
+020 PLAY "v10t180","v9t180"
+030 PLAY "o4l8deL4f#g","l4oido2ao3d"
+040 PLAY"o4l2al4bgea","l4oido2ao3doido2ao3d"
 050 PLAY"o412fH.1BedefHge","o1l4do2ao3doido2ao3d"
 060 PLAY"o412fHg14e.18f#","o1l4do2ao3doido2ao3d"
 070 PLAY"o412d..18el4fHg","14o1do2ao3do1do2ao3d"
