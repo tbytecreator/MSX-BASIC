@@ -57,7 +57,7 @@
 0610 ' DESENHA O FRAME               '
 0620 ' ******************************'
 0630 SPRITE OFF
-0640   CM=1
+0640   CM=1 : 'camada dos sprites
 0650   PUT SPRITE 0,(X,Y),6,0 : 'CANHAO
 0655   IF TC=1 THEN PUT SPRITE 21,(TX,TY),8,3 : 'TORPEDO
 0660   FOR I = 0 TO 4 : 'ALIENS
