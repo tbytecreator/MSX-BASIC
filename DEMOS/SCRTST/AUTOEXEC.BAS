@@ -1,6 +1,6 @@
 0010 SCREEN 0:WIDTH 80:KEY OFF:CLS:COLOR 15,1,1
 0020 ?"==========================="
-0030 ?"PROGRAMAS DE SPRITES       "
+0030 ?"LOGOTIPOS TBYTECREATOR 1.0 "    
 0040 ?"==========================="
 0050 ?"(1)Logo Canal SC7          "
 0060 ?"(2)TByteCreator SC2        "
