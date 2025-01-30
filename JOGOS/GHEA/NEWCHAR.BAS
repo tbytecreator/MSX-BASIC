@@ -75,8 +75,9 @@
 1120 INPUT #1,PO
 1130 INPUT #1,AV 
 1140 INPUT #1,SL
-1150 CLOSE
-1160 RETURN
+1150 INPUT #1,XP
+1160 CLOSE
+1170 RETURN
 
 2000 ' =====================================
 2010 ' EXECUTA A OPCAO
@@ -165,6 +166,9 @@
 11030 DATA "atributos"
 11040 DATA "ATRIBUTOS"
 11050 DATA "ROLLSCRS.BAS"
+11060 DATA "classe"
+11070 DATA "CLASSE"
+11080 DATA "SLCCLASS.BAS"
 11090 DATA *
 
 12000 ' =====================================
@@ -202,32 +206,41 @@
 14000 ' =====================================
 14010 ' IMPRIME O PERSONAGEM
 14020 ' =====================================
-14030 GOSUB 15000:'SORTEIA OS ESCORES
+14030 GOSUB 15000:'IMPRIME CLASSE E NIVEL
+14030 GOSUB 18000:'IMPRIME AC E HP
 14040 GOSUB 16000:'IMPRIMIR OS ESCORES
 14050 GOSUB 17000:'IMPRIMIR OURO
 
 15000 ' =====================================
-15010 ' IMPRIMIR CLASSE E NIVEL            
+15010 ' IMPRIMIR CLASSE, NIVEL E XP            
 15020 ' =====================================
 15030 LOCATE 16,4:?"CLASSE:";CL$
-15040 LOCATE 16,5:?"NIVEL:";NV
+15040 LOCATE 16,5:?"NIVEL :";NV;" XP:";XP
 15050 LOCATE 16,6:?"======================"
 15060 RETURN
 
 16000 ' ====================================
 16010 ' SUBROTINA IMPRIMIR ATRIBUTOS
 16020 ' ====================================
-16030 LOCATE 16,7:?"FORCA         :";:PRINT USING "##";ST
-16040 LOCATE 16,8:?"INTELIGENCIA  :";:PRINT USING "##";IN 
-16050 LOCATE 16,9:?"SABEDORIA     :";:PRINT USING "##";WS
-16060 LOCATE 16,10:?"DESTREZA      :";:PRINT USING "##";DX
-16070 LOCATE 16,11:?"CONSTITUICAO  :";:PRINT USING "##";CO
-16080 LOCATE 16,12:?"CARISMA       :";:PRINT USING "##";CH
-16100 RETURN
+16030 LOCATE 16,10:?"FORCA         :";:PRINT USING "##";ST
+16040 LOCATE 16,11:?"INTELIGENCIA  :";:PRINT USING "##";IN 
+16050 LOCATE 16,12:?"SABEDORIA     :";:PRINT USING "##";WS
+16060 LOCATE 16,13:?"DESTREZA      :";:PRINT USING "##";DX
+16070 LOCATE 16,14:?"CONSTITUICAO  :";:PRINT USING "##";CO
+16080 LOCATE 16,15:?"CARISMA       :";:PRINT USING "##";CH
+16090 RETURN
 
 17000 ' ====================================
 17010 ' SUBROTINA IMPRIMIR OURO
 17020 ' ====================================
-17030 LOCATE 16,13:?"======================"
-17040 LOCATE 16,14:?"PECAS DE OURO :";PO
+17030 LOCATE 16,16:?"======================"
+17040 LOCATE 16,17:?"PECAS DE OURO :";PO
 17050 RETURN
+
+18000 ' =====================================
+18010 ' IMPRIMIR AC E HP            
+18020 ' =====================================
+18030 LOCATE 16,7:?"AC:";AC
+18040 LOCATE 16,8:?"HP:";HP;" ATUAL:";HA
+18050 LOCATE 16,9:?"======================"
+18060 RETURN
