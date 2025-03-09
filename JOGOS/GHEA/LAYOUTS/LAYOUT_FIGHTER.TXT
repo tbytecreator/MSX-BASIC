@@ -1,0 +1,9 @@
+=======================================
+LAYOUT DA CLASSE FIGHTER
+=======================================
+SD => SAVE DEATH RAY / POISON
+MW => SAVE MAGIC WANDS
+TS => SAVE PARALYSIS /TURN TO STONE
+DB => SAVE DRAGON BREATH
+SP => SAVE ROD / STAVES /SPELLS
+=======================================

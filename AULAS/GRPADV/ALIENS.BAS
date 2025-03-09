@@ -1,0 +1,177 @@
+00010 ' ====================================
+00020 ' ALIEMINATION
+00030 ' MANOEL NETO 2024
+00040 ' ====================================
+00050 COLOR 15,1,1
+00060 KEY OFF:CLS:DEFINT A-Z
+00070 DIM EX(4,3),EY(4,3)
+
+00100 ' ************************************
+00110 ' SPLASH SCREEN
+00120 ' ************************************
+00130 SCREEN 0
+00140 LOCATE 14,10:? "SPACE INVADERS"
+00150 LOCATE 10,12:? "PRESS FIRE TO START"
+00160 LOCATE 12,14:? "MANOEL NETO 2024"
+00170 OP$=INPUT$(1)
+
+00200 ' ************************************
+00210 ' INICIALIZA JOGO
+00220 ' ************************************
+00230 SCREEN 2
+00240 RESTORE 9000
+00250 GOSUB 5000 : ' TABELA DE SPRITES
+00260 GOSUB 6000 : ' TABELA DE PADROES
+00270 GOSUB 7000 : ' TABELA DE CORES 
+00290 ON SPRITE GOSUB 3000 :'COLISOES
+00300 ON STRIG GOSUB 2000:' ADICIONA TORPEDO
+00310 STRIG(0) ON
+00320 X=127:Y=174:V=16 :'HEROI
+00330 TX=0:TY=0:TV=16:TC=0 :'TORPEDO
+00340 TIME=0:AN=2:CM=1:VX=1:VY=20
+00350 FOR I = 0 TO 4
+00360    FOR J = 0 TO 3
+00370        EX(I,J)=16+J*20
+00380        EY(I,J)=16+I*20
+00390   NEXT J
+00400 NEXT I
+
+00500 ' ************************************
+00510 ' ATUALIZA AS COORDENADAS       
+00520 ' ************************************
+00530 IF TC = 1 THEN GOSUB 1500:'TORPEDO
+00540 FOR I = 0 TO 4
+00550    FOR J = 0 TO 3
+00560        EX(I,J)=EX(I,J)+VX
+00570    NEXT J
+00580 NEXT I
+00590 IF EX(0,3)>=223 THEN 620 : 'INVERTE A DIRECAO DOS ALIENS
+00600 IF EX(0,0)<=16  THEN 620 : 'INVERTE A DIRECAO DOS ALIENS
+00610 GOTO 700 : 'DESENHA O FRAME 
+00620 ' INVERTE A DIRECAO DOS ALIENS
+00630 VX=VX*-1
+00640 FOR I = 0 TO 4
+00650    FOR J = 0 TO 3
+00660        EY(I,J)=EY(I,J)+VY
+00670    NEXT J
+00680 NEXT I
+
+00700 ' ************************************
+00710 ' DESENHA O FRAME               
+00720 ' ************************************
+00730 SPRITE OFF
+00740   PUT SPRITE 0,(X,Y),6,0 : 'CANHAO
+00750   IF AN=1 THEN AN=2 ELSE AN=1
+00760   S=16+AN*8
+00770   FOR I = 0 TO 4 
+00780      FOR J = 0 TO 3
+00790       A=(EY(I,J)\8)*256+(EY(I,J) AND 7)+(EY(I,J) AND &HF8)
+
+
+00810   NEXT I
+00830 SPRITE ON
+00840 IF TIME<2 GOTO 840
+00850 TIME=0 
+
+00900 ' ************************************
+00910 ' ENTRADA DO JOGADOR            
+00920 ' ************************************
+00930 S=STICK(0) 
+00940 IF S = 3 THEN GOTO 970 : 'MOVE PARA A DIREITA
+00950 IF S = 7 THEN GOTO 980 : 'MOVE PARA A ESQUERDA
+00960 GOTO 1000 : ' LIMITES DA TELA
+00970 X=X+V:GOTO 1000
+00980 X=X-V:GOTO 1000
+00990 ' ************************************
+01000 ' DETERMINA OS LIMITES DA TELA  
+01010 ' ************************************
+01020 IF X<0 THEN X=0
+01030 IF X>239 THEN X=239
+01040 GOTO 500 : ' VOLTA PARA O LOOP
+
+01500 ' ************************************
+01510 ' MOVE O TORPEDO                 
+01520 ' ************************************
+01530 TY = TY - TV
+01540 IF TY <= 0 THEN TY = -20:TC=0
+01550 RETURN
+
+02000 ' ************************************
+02010 ' ADICIONA UM TORPEDO           
+02020 ' ************************************
+02030 IF TC = 1 THEN RETURN
+02040 TC=1:TX=X:TY=Y-10
+02050 RETURN
+
+03000 ' ************************************
+03010 ' TRATA AS COLISOES             
+03020 ' ************************************
+03030 SPRITE OFF
+03040 COLOR 15,1,1
+03050 SCREEN 0
+03060 CLS
+03070 GOTO 4000
+03080 END
+
+04000 ' ************************************
+04010 ' FIM DO JOGO 
+04020 ' ************************************
+04030 PRINT "DESEJA JOGAR NOVAMENTE? (S/N)"
+04040 OP$=INPUT$(1)
+04050 IF OP$="S" OR OP$="s" THEN 200
+04060 END
+
+05000 ' ************************************
+05010 ' CARREGA A TABELA DE SPRITES          
+05020 ' ************************************
+05030 S=BASE(9)
+05040 READ R$
+05050 IF R$="*" THEN RETURN 
+05060 VPOKE S,VAL("&H"+R$)
+05070 S=S+1
+05060 GOTO 5040
+
+06000 ' ************************************
+06010 ' CARREGA A TABELA DE PADROES 
+06020 ' ************************************
+06030 S=0 
+06040 READ R$
+06050 IF R$="*" THEN RETURN 
+06060 R=VAL("&H"+R$)
+06070 VPOKE S,R
+06080 VPOKE 2048+S,R
+06090 VPOKE 4096+S,R
+06100 S=S+1
+06110 GOTO 6040
+
+07000 ' ************************************
+07010 ' CARREGA A TABELA DE CORES  
+07020 ' ************************************
+07020 FOR I=0 TO 31
+07030   VPOKE &H2000+I,32
+07040 NEXT I
+07050 RETURN 
+
+09000 ' ************************************
+09010 ' HARD SPRITES           
+09020 ' ************************************
+09030 ' CANHAO - COLOR 6
+09040 DATA 00,00,00,00,00,00,01,01
+09050 DATA 07,07,07,7F,FF,FF,FF,FF
+09060 DATA 00,00,00,00,00,00,80,80
+09070 DATA E0,E0,E0,FE,FF,FF,FF,FF
+09080 ' TORPEDO - COLOR 8
+09090 DATA 00,00,00,00,00,00,00,00
+09100 DATA 00,01,01,01,01,01,01,01
+09110 DATA 00,00,00,00,00,00,00,00
+09120 DATA 00,80,80,80,80,80,80,80
+09130 DATA *
+
+10000 ' ************************************
+10010 ' SOFT SPRITES
+10020 ' ************************************
+10030 DATA 00,00,00,00,00,00,00,00
+10040 DATA 18,3C,7E,DB,FF,24,5A,A5
+10050 DATA 18,3C,7E,DB,FF,24,5A,A5
+10060 DATA 18,3C,7E,DB,FF,5A,81,42
+10070 DATA *

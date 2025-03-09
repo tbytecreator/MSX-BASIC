@@ -1,0 +1,246 @@
+0010 ' =====================================
+0020 ' Ghea D&D BASIC Module
+0030 ' =====================================
+0040 SCREEN 0:COLOR 2,0,0:KEYOFF:OP=0:MX=0
+
+0060 ' =====================================
+0070 ' CARREGA AS OPCOES DE MENU
+0080 ' =====================================
+0090 DIM A$(2,3)
+0100 READ R$:IF R$="*" THEN 400
+0110 A$(MX,1)=R$
+0120 READ R$
+0130 A$(MX,2)=R$
+0140 READ R$
+0150 A$(MX,3)=R$
+0160 MX=MX+1
+0170 GOTO 100
+
+0400 ' =====================================
+0410 ' ACERTA AS FORMAS DOS CARACTERES
+0420 ' ===================================== 
+0430 FOR C=&H41*8 TO &H5A*8
+0440   VPOKE C+256,VPEEK(C)
+0450 NEXT C
+
+0500 ' =====================================
+0510 ' MUDA AS CORES DE FUNDO
+0520 ' =====================================
+0530 CL=&H12 : ' TEXTO PRETO/FUNDO VERDE
+0540 VPOKE 8204,CL
+0550 VPOKE 8205,CL
+0560 VPOKE 8206,CL
+0570 VPOKE 8207,CL
+0580 VPOKE 8219,CL/16+(CL-(CL AND &HF0))*16
+
+0600 ' =====================================
+0610 ' DESENHA A TELA 
+0620 ' =====================================
+0630 GOSUB 9000:'DESENHA O HEADER
+0640 GOSUB 8000:'DESENHA O CORPO
+0650 GOSUB 10000:'DESENHA O FOOTER
+0660 CY=4:GOSUB 5000:'DESENHA OPCOES DO MENU
+0670 GOSUB 1000:'LER CHR
+0680 GOSUB 14000:'IMPRIME PERSONAGEM
+
+0700 ' ===================================== 
+0710 ' LOOP PRINCIPAL
+0720 ' =====================================
+0730 CY=4:GOSUB 7000:'DESENHA SELECAO
+0740 K$=INKEY$:IF K$="" THEN 740
+0750 K=ASC(k$)
+0760 IF K=30 OR K=31 THEN CY=4:GOSUB 6000 
+0770 IF K=31 THEN OP=(OP+1) MOD MX
+0780 IF K=30 THEN OP=OP-1:IF OP=-1 THEN OP=MX-1
+0790 IF K=13 THEN 2000 : ' EXECUTA A OPCAO
+0800 IF K=27 THEN CLS:END
+0899 GOTO 730
+
+1000 ' ==========================
+1010 ' SUBROTINA DE LER CHR
+1020 ' ==========================
+1025 A$="NEWCHAR.CHR"
+1030 OPEN A$ FOR INPUT AS #1
+1035 INPUT #1,CL$
+1038 INPUT #1,NV
+1040 INPUT #1,HP
+1045 INPUT #1,HA
+1050 INPUT #1,AC
+1060 INPUT #1,ST
+1070 INPUT #1,IN
+1080 INPUT #1,WS
+1090 INPUT #1,DX
+1100 INPUT #1,CO 
+1110 INPUT #1,CH
+1120 INPUT #1,PO
+1130 INPUT #1,AV 
+1140 INPUT #1,SL
+1150 INPUT #1,XP
+1160 CLOSE
+1170 RETURN
+
+2000 ' =====================================
+2010 ' EXECUTA A OPCAO
+2020 ' =====================================
+2030 OP$ = A$(OP,3) 
+2040 RUN OP$+".BAS"
+2999 END
+
+3000 ' =====================================
+3010 ' CRIA UMA LINHA CAIXA PARA BAIXO
+3020 ' =====================================
+3030 LOCATE 0,CY:PRINT CHR$(1)+CHR$(&H58);
+3040 FOR I = 1 TO 38
+3050   LOCATE I,CY
+3060   PRINT CHR$(1)+CHR$(&H57);
+3070 NEXT I
+3080 LOCATE 39,CY:PRINT CHR$(1)+CHR$(&H59);
+3090 RETURN
+
+4000 ' =====================================
+4010 ' CRIA UMA LINHA DE CAIXA PARA CIMA
+4020 ' =====================================
+4030 LOCATE 0,CY:PRINT CHR$(1)+CHR$(&H5A);
+4040 FOR I = 1 TO 38
+4050   LOCATE I,CY
+4060   PRINT CHR$(1)+CHR$(&H57);
+4070 NEXT I
+4080 LOCATE 39,CY:PRINT CHR$(1)+CHR$(&H5B);
+4090 RETURN
+
+5000 ' =====================================
+5010 ' DESENHA AS OPCOES DO MENU
+5020 ' =====================================
+5030 FOR F=0 TO MX
+5050   LOCATE 1,F+CY:PRINT A$(F,1)
+5070 NEXT F 
+5080 RETURN
+
+6000 ' =====================================
+6010 ' DESENHA NAO SELECIONADO
+6020 ' =====================================
+6030 LOCATE 1,OP+CY:PRINT A$(OP,1)
+6040 RETURN
+
+7000 ' =====================================
+7010 ' DESENHA SELECIONADO
+7020 ' =====================================
+7030 LOCATE 1,OP+CY:PRINT A$(OP,2)
+7040 RETURN
+
+8000 ' =====================================
+8010 ' DESENHA O CORPO
+8020 ' =====================================
+8030 CY=3:GOSUB 12000:'DESENHA CAIXA
+8040 FOR I = 4 TO 18
+8050   LOCATE 00,I:PRINT CHR$(1)+CHR$(&H56);
+8060   LOCATE 14,I:PRINT CHR$(1)+CHR$(&H56);
+8070   LOCATE 39,I:PRINT CHR$(1)+CHR$(&H56);
+8080 NEXT I
+8090 CY=19:GOSUB 13000:'DESENHA CAIXA P/ CIMA
+8100 RETURN
+
+9000 ' =====================================
+9010 ' DESENHA HEADER
+9020 ' =====================================
+9030 CY=0:GOSUB 3000:'DESENHA CAIXA P/ BAIXO
+9040 LOCATE 0,1:PRINT CHR$(1)+CHR$(&H56)
+9050 LOCATE 1,1:PRINT "CRIACAO DO PERSONAGEM            <ESC>"         
+9070 LOCATE 39,1:PRINT CHR$(1)+CHR$(&H56)
+9080 CY=2:GOSUB 4000:'DESENHA CAIXA P/ CIMA
+9090 RETURN
+
+10000 ' =====================================
+10010 ' DESENHA O FOOTER
+10020 ' =====================================
+10030 CY=20:GOSUB 3000:'DESENHA CAIXA P/ BAIXO
+10040 LOCATE 0,21:PRINT CHR$(1)+CHR$(&H56);
+10060 LOCATE 1,21:PRINT "SIGA AS OPCOES DO MENU A ESQUERDA";
+10070 LOCATE 39,21:PRINT CHR$(1)+CHR$(&H56);
+10080 CY=22:GOSUB 4000:'DESENHA CAIXA P/ CIMA
+10090 RETURN
+
+11000 ' =====================================
+11010 ' DADOS DO MENU
+11020 ' =====================================
+11030 DATA "atributos"
+11040 DATA "ATRIBUTOS"
+11050 DATA "ROLLSCRS.BAS"
+11060 DATA "classe"
+11070 DATA "CLASSE"
+11080 DATA "SLCCLASS.BAS"
+11090 DATA *
+
+12000 ' =====================================
+12010 ' LINHAS PARA BAIXO COM DIVISAO
+12020 ' =====================================
+12030 LOCATE 0,CY:PRINT CHR$(1)+CHR$(&H58);
+12040 FOR I = 1 TO 13
+12050   LOCATE I,CY
+12060   PRINT CHR$(1)+CHR$(&H57);
+12070 NEXT I
+12080 LOCATE 14,CY:PRINT CHR$(1)+CHR$(&H52);
+12090 FOR I = 15 TO 38
+12100   LOCATE I,CY
+12110   PRINT CHR$(1)+CHR$(&H57);
+12120 NEXT I
+12130 LOCATE 39,CY:PRINT CHR$(1)+CHR$(&H59);
+12140 RETURN
+
+13000 ' =====================================
+13010 ' LINHA PARA CIMA COM DIVISAO
+13020 ' =====================================
+13030 LOCATE 0,CY:PRINT CHR$(1)+CHR$(&H5A);
+13040 FOR I = 1 TO 13
+13050   LOCATE I,CY
+13060   PRINT CHR$(1)+CHR$(&H57);
+13070 NEXT I
+13080 LOCATE 14,CY:PRINT CHR$(1)+CHR$(&H51);
+13100 FOR I = 15 TO 38
+13110   LOCATE I,CY
+13120   PRINT CHR$(1)+CHR$(&H57);
+13130 NEXT I
+13140 LOCATE 39,CY:PRINT CHR$(1)+CHR$(&H5B);
+13150 RETURN
+
+14000 ' =====================================
+14010 ' IMPRIME O PERSONAGEM
+14020 ' =====================================
+14030 GOSUB 15000:'IMPRIME CLASSE E NIVEL
+14030 GOSUB 18000:'IMPRIME AC E HP
+14040 GOSUB 16000:'IMPRIMIR OS ESCORES
+14050 GOSUB 17000:'IMPRIMIR OURO
+
+15000 ' =====================================
+15010 ' IMPRIMIR CLASSE, NIVEL E XP            
+15020 ' =====================================
+15030 LOCATE 16,4:?"CLASSE:";CL$
+15040 LOCATE 16,5:?"NIVEL :";NV;" XP:";XP
+15050 LOCATE 16,6:?"======================"
+15060 RETURN
+
+16000 ' ====================================
+16010 ' SUBROTINA IMPRIMIR ATRIBUTOS
+16020 ' ====================================
+16030 LOCATE 16,10:?"FORCA         :";:PRINT USING "##";ST
+16040 LOCATE 16,11:?"INTELIGENCIA  :";:PRINT USING "##";IN 
+16050 LOCATE 16,12:?"SABEDORIA     :";:PRINT USING "##";WS
+16060 LOCATE 16,13:?"DESTREZA      :";:PRINT USING "##";DX
+16070 LOCATE 16,14:?"CONSTITUICAO  :";:PRINT USING "##";CO
+16080 LOCATE 16,15:?"CARISMA       :";:PRINT USING "##";CH
+16090 RETURN
+
+17000 ' ====================================
+17010 ' SUBROTINA IMPRIMIR OURO
+17020 ' ====================================
+17030 LOCATE 16,16:?"======================"
+17040 LOCATE 16,17:?"PECAS DE OURO :";PO
+17050 RETURN
+
+18000 ' =====================================
+18010 ' IMPRIMIR AC E HP            
+18020 ' =====================================
+18030 LOCATE 16,7:?"AC:";AC
+18040 LOCATE 16,8:?"HP:";HP;" ATUAL:";HA
+18050 LOCATE 16,9:?"======================"
+18060 RETURN
