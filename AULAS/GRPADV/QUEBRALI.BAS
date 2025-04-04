@@ -1,13 +1,13 @@
 00010 ' ====================================
 00020 ' QUEBRANDO O LIMITE DOS SPRITES 
-00030 ' POR LINA 
+00030 ' POR LINHA 
 00030 ' MANOEL NETO 2024
 00040 ' ====================================
 00050 COLOR 15,1,1
 00060 SCREEN 2
 
 00100 ' ====================================
-00110 ' CARREGA A TABELA DE PADROES E CORES 
+00110 ' TABELA DE PADROES E CORES 
 00120 ' ====================================
 00130 FOR I=0 TO &H1F
 00140   READ R$
@@ -17,7 +17,7 @@
 00180 NEXT I
 
 00200 ' ====================================
-00210 ' POPULA A TELA 
+00210 ' TABELA DE NOMES
 00220 ' ====================================
 00230 FOR I=&H1800 TO &H18FF
 00240   VPOKE I, I MOD 2

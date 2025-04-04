@@ -1,0 +1,6 @@
+WBS Tarefas
+===========
+
+1. Os alienigenas são uma matrix de 6 por 6 
+    1.1 Criar os aliens que faltam 
+    1.2 Criar um algoritimo que coloque um alien em uma posição especifica
