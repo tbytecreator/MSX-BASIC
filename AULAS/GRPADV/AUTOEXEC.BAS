@@ -1,168 +1,198 @@
-0010 ' =====================================
-0020 ' MENU TBYTECREATOR MSX 1
-0030 ' =====================================
-0040 SCREEN 1:COLOR 2,0,0:KEYOFF:OP=0:MX=0
-0050 ST=0 :' DRIVE: 0=A, 1=B, 2=C, 3=D
+00010 ' ====================================
+00020 ' SPACE INVADERS COM TILES  
+00030 ' MANOEL NETO 2025
+00040 ' ====================================
+00050 COLOR 15,1,1
+00060 KEY OFF:CLS:DEFINT A-Z
+00070 DIM EX(4,3),EY(4,3) : 'MATRIZ DE ALIENS
+00080 CR=31: ' COLUNAS EM UMA LINHA 
+00090 X=127:Y=174:V=16:'HEROI
+00100 TX=0:TY=0:TV=16:TC=0 :'TORPEDO
+00110 TIME=0:AN=1::VX=1:VY=20
 
-0060 ' =====================================
-0070 ' CARREGA ARQUIVOS EM ARRAY
-0080 ' =====================================
-0090 CLEAR 2048:DIM A$(25,2)
-0110 A1=PEEK(62290)*256+PEEK(62289):'ENDEREÇO DMA 
-0120 L=0:'CONTADOR DE ARQUIVOS
-0130 DD$=DSKI$(ST,1):'O DRIVE EH 360 OU 720?
-0140 D=PEEK(A1)
-0150 IF D=248 THEN Z=5 ELSE Z=7
-0160 FR=DSKF(0):'ESPACO LIVRE
-0170 FOR SK=0 TO 6
-0180   AD=A1
-0190   DD$=DSKI$(ST,SK+Z):'LE O SETOR
-0200   FOR P=0 TO 15
-0210     IF PEEK(AD)<32 OR PEEK(AD)>126 THEN AD=AD+32:GOTO 370
-0220     P$=""
-0230     FOR W=0 TO 10:'LE O NOME
-0240       P$=P$+CHR$(PEEK(AD))
-0250       AD=AD+1
-0260     NEXT
-0270     IF RIGHT$(P$,3)<>"BAS" THEN 360
-0280     IF LEFT$(P$,8)="AUTOEXEC" THEN 360
-0290     FOR I=1 TO LEN(P$):IF MID$(P$,I,1)=" " THEN MID$(P$,I,1)="":NEXT I
-0300     A$(L,1)=LEFT$(P$,8)
-0310     FOR I=1 TO LEN(P$)
-0320       IF MID$(P$,I,1) <> " " THEN MID$(P$,I,1)=CHR$(ASC(MID$(P$,I,1))+32):
-0330     NEXT I
-0340     A$(L,2)=LEFT$(P$,8)
-0350     L=L+1:MX=MX+1
-0360     AD=AD+21
-0370   NEXT
-0380 NEXT
-0390 'GOTO 12000
+00120 ' ************************************
+00130 ' SPLASH SCREEN
+00140 ' ************************************
+00150 SCREEN 0
+00160 LOCATE 14,10:? "SPACE INVADERS"
+00170 LOCATE 10,12:? "PRESS FIRE TO START"
+00180 LOCATE 12,14:? "MANOEL NETO 2024"
+00190 OP$=INPUT$(1)
 
-0400 ' =====================================
-0410 ' ACERTA AS FORMAS DOS CARACTERES
-0420 ' ===================================== 
-0430 FOR C=&H41*8 TO &H5A*8
-0440   VPOKE C+256,VPEEK(C)
-0450 NEXT C
+00200 ' ************************************
+00210 ' INICIALIZA JOGO
+00220 ' ************************************
+00230 SCREEN 2,2,0
+00240 RESTORE 9000
+00250 GOSUB 5000 : ' TABELA DE SPRITES
+00260 GOSUB 6000 : ' TABELA DE PADROES
+00270 GOSUB 7000 : ' TABELA DE CORES  
+00290 ON SPRITE GOSUB 3000 :' COLISOES
+00300 ON STRIG GOSUB 2000  :' TIRO
+00310 STRIG(0) ON
+00320 FOR I = 0 TO 4
+00330    FOR J = 0 TO 3
+00340        EX(I,J)=16+J*20
+00350        EY(I,J)=16+I*20
+00360   NEXT J
+00370 NEXT I
 
-0500 ' =====================================
-0510 ' MUDA AS CORES DE FUNDO
-0520 ' =====================================
-0530 CL=&H12 : ' TEXTO PRETO/FUNDO VERDE
-0540 VPOKE 8204,CL
-0550 VPOKE 8205,CL
-0560 VPOKE 8206,CL
-0570 VPOKE 8207,CL
-0580 VPOKE 8219,CL/16+(CL-(CL AND &HF0))*16
+00400 ' ************************************
+00410 ' ATUALIZA AS COORDENADAS       
+00420 ' ************************************
+00425 IF TC = 1 THEN GOSUB 1000:'TORPEDO
+00430 FOR I = 0 TO 4
+00440    FOR J = 0 TO 3
+00450        EX(I,J)=EX(I,J)+VX
+00460    NEXT J
+00470 NEXT I
+00480 IF EX(0,3)>=223 THEN 510 
+00490 IF EX(0,0)<=16  THEN 510
+00500 GOTO 600 : 'DESENHA O FRAME 
+00510 ' INVERTE A DIRECAO DOS ALIENS
+00520 VX=VX*-1
+00530 FOR I = 0 TO 4
+00540    FOR J = 0 TO 3
+00550        EY(I,J)=EY(I,J)+VY
+00560    NEXT J
+00570 NEXT I
 
-0600 ' =====================================
-0610 ' DESENHA A TELA 
-0620 ' =====================================
-0630 GOSUB 9000:'DESENHA O HEADER
-0640 GOSUB 8000:'DESENHA O CORPO
-0650 GOSUB 10000:'DESENHA O FOOTER
-0660 CY=4:GOSUB 5000:'DESENHA OPCOES DO MENU
+00600 ' ************************************
+00610 ' DESENHA O FRAME               
+00620 ' ************************************
+00630 SPRITE OFF
+00640   PUT SPRITE 0,(X,Y),6,0 : 'CANHAO
+00650   IF TC=1 THEN PUT SPRITE 21,(TX,TY),8,3 : 'TORPEDO
+00660   FOR I = 0 TO 4 : 'ALIENS
+00670     FOR J = 0 TO 3
+00680       CL = EX(I,J): ' COLUNA DO SPRITE ATUAL
+00690       LI = EY(I,J): ' LINHA DO SPRITE ATUAL
+00700       GOSUB 1500  : ' CALCULA ENDERECO NA VRAM
+00710       FOR P = 0 TO 7
+00720           VPOKE EN+P,AN+P
+00730       NEXT P
+00740     NEXT J
+00750   NEXT I
+00760 SPRITE ON
+00770 IF TIME<2 GOTO 740
+00780 IF AN=0 THEN AN=1 ELSE AN=0
+00790 TIME=0 
 
-0700 ' ===================================== 
-0710 ' LOOP PRINCIPAL
-0720 ' =====================================
-0730 CY=4:GOSUB 7000:'DESENHA SELECAO
-0740 K$=INKEY$:IF K$="" THEN 740
-0750 K=ASC(k$)
-0760 IF K=30 OR K=31 THEN CY=4:GOSUB 6000 
-0770 IF K=31 THEN OP=(OP+1) MOD MX
-0780 IF K=30 THEN OP=OP-1:IF OP=-1 THEN OP=MX-1
-0790 IF K=13 THEN 2000 : ' EXECUTA A OPCAO
-0800 IF K=27 THEN CLS:END
-0810 IF K$="B" OR K$="b" THEN ST=1:GOTO 60
-0899 GOTO 730
+00800 ' ************************************
+00810 ' ENTRADA DO JOGADOR            
+00820 ' ************************************
+00830 S=STICK(0) 
+00840 IF S = 3 THEN GOTO 870
+00850 IF S = 7 THEN GOTO 880
+00860 GOTO 920
+00870 X=X+V:GOTO 920
+00880 X=X-V:GOTO 920
+00890 ' ************************************
+00900 ' DETERMINA OS LIMITES DA TELA  
+00910 ' ************************************
+00920 IF X<0 THEN X=0
+00930 IF X>239 THEN X=239
+00940 GOTO 400
 
-2000 ' =====================================
-2010 ' EXECUTA A OPCAO
-2020 ' =====================================
-2030 OP$ = A$(OP,1) 
-2040 RUN OP$+".BAS"
-2999 END
+01000 ' ************************************
+01010 ' MOVE O TORPEDO                 
+01020 ' ************************************
+01030 TY = TY - TV
+01040 IF TY <= 0 THEN TY = -20:TC=0
+01050 RETURN
 
-3000 ' =====================================
-3010 ' CRIA UMA LINHA CAIXA PARA BAIXO
-3020 ' =====================================
-3030 LOCATE 0,CY:PRINT CHR$(1)+CHR$(&H58);
-3040 FOR I = 1 TO 38
-3050   LOCATE I,CY
-3060   PRINT CHR$(1)+CHR$(&H57);
-3070 NEXT I
-3080 LOCATE 39,CY:PRINT CHR$(1)+CHR$(&H59);
-3090 RETURN
+01500 ' ************************************
+01510 ' CALCULA ENDERECO DA POS NA VRAM     
+01520 ' ************************************
+01530 EN=6144+CL+LI*CR
+01535 'PSET(100,100)
+01536 'OPEN "GRP:" FOR OUTPUT AS #1
+01537 'PRINT #1,EN
+01540 RETURN
 
-4000 ' =====================================
-4010 ' CRIA UMA LINHA DE CAIXA PARA CIMA
-4020 ' =====================================
-4030 LOCATE 0,CY:PRINT CHR$(1)+CHR$(&H5A);
-4040 FOR I = 1 TO 38
-4050   LOCATE I,CY
-4060   PRINT CHR$(1)+CHR$(&H57);
-4070 NEXT I
-4080 LOCATE 39,CY:PRINT CHR$(1)+CHR$(&H5B);
-4090 RETURN
+02000 ' ************************************
+02010 ' ADICIONA UM TORPEDO           
+02020 ' ************************************
+02030 IF TC = 1 THEN RETURN
+02040 TC=1:TX=X:TY=Y-10
+02050 RETURN
 
-5000 ' =====================================
-5010 ' DESENHA AS OPCOES DO MENU
-5020 ' =====================================
-5030 FOR F=0 TO MX
-5050   LOCATE 1,F+CY:PRINT A$(F,1)
-5070 NEXT F 
-5080 RETURN
+03000 ' ************************************
+03010 ' TRATA AS COLISOES             
+03020 ' ************************************
+03030 SPRITE OFF
+03040 COLOR 15,1,1
+03050 SCREEN 0
+03060 CLS
+03070 GOTO 4000
+03080 END
 
-6000 ' =====================================
-6010 ' DESENHA SELECAO
-6020 ' =====================================
-6030 LOCATE 1,OP+CY:PRINT A$(OP,1)
-6040 RETURN
+04000 ' ************************************
+04010 ' FIM DO JOGO 
+04020 ' ************************************
+04030 PRINT "DESEJA JOGAR NOVAMENTE? (S/N)"
+04040 OP$=INPUT$(1)
+04050 IF OP$="S" OR OP$="s" THEN 200
+04060 END
 
-7000 ' =====================================
-7010 ' DESENHA SELECAO
-7020 ' =====================================
-7030 LOCATE 1,OP+CY:PRINT A$(OP,2)
-7040 RETURN
+05000 ' ************************************
+05010 ' CARREGA A TABELA DE SPRITES          
+05020 ' ************************************
+05030 S=BASE(9)
+05040 READ R$
+05050 IF R$="*" THEN RETURN 
+05060 VPOKE S,VAL("&H"+R$)
+05070 S=S+1
+05060 GOTO 5040
 
-8000 ' =====================================
-8010 ' DESENHA O CORPO
-8020 ' =====================================
-8030 CY=3:GOSUB 3000:'DESENHA CAIXA P/ BAIXO
-8040 FOR I = 4 TO 18
-8050   LOCATE 00,I:PRINT CHR$(1)+CHR$(&H56);
-8060   LOCATE 39,I:PRINT CHR$(1)+CHR$(&H56);
-8070 NEXT I
-8080 CY=19:GOSUB 4000:'DESENHA CAIXA P/ CIMA
-8090 RETURN
+06000 ' ************************************
+06010 ' CARREGA A TABELA DE PADROES 
+06020 ' ************************************
+06030 S=BASE(12)
+06040 READ R$
+06050 IF R$="*" THEN RETURN 
+06060 R=VAL("&H"+R$)
+06070 VPOKE S,R
+06080 VPOKE 2048+S,R
+06090 VPOKE 4096+S,R
+06100 S=S+1
+06110 GOTO 6040
 
-9000 ' =====================================
-9010 ' DESENHA HEADER
-9020 ' =====================================
-9030 CY=0:GOSUB 3000:'DESENHA CAIXA P/ BAIXO
-9040 LOCATE 0,1:PRINT CHR$(1)+CHR$(&H56)
-9050 LOCATE 2,1:PRINT "TBC EXECUTOR         <ESC>"
-9070 LOCATE 39,1:PRINT CHR$(1)+CHR$(&H56)
-9080 CY=2:GOSUB 4000:'DESENHA CAIXA P/ CIMA
-9090 RETURN
+07000 ' ************************************
+07010 ' CARREGA A TABELA DE CORES  
+07020 ' ************************************
+07030 READ R$
+07040 IF R$="*" THEN RETURN 
+07050 R=VAL("&H"+R$)
+07060 VPOKE 8192,R
+07070 VPOKE 10240,R
+07080 VPOKE 12288,R
+07090 S=S+1
+07100 GOTO 7030
 
-10000 ' =====================================
-10010 ' DESENHA O FOOTER
-10020 ' =====================================
-10030 CY=20:GOSUB 3000:'DESENHA CAIXA P/ BAIXO
-10040 LOCATE 0,21:PRINT CHR$(1)+CHR$(&H56);
-10050 LOCATE 2,21:IF ST=0 THEN PRINT "<A:>":ELSE PRINT "<B:>";
-10060 LOCATE 8,21:PRINT "FREE SPACE:";FR;"KB";
-10070 LOCATE 39,21:PRINT CHR$(1)+CHR$(&H56);
-10080 CY=22:GOSUB 4000:'DESENHA CAIXA P/ CIMA
-10090 RETURN
-
-12000 ' =====================================
-12010 ' NAO HA ARQUIVOS
-12020 ' =====================================
-12025 CLS
-12030 FOR I=1 TO 10
-12040   ?A$(I,1);A$(I,2)
-12060 NEXT I
-12070 END
+09000 ' ************************************
+09010 ' PADROES            
+09020 ' ************************************
+09030 ' CANHAO
+09040 DATA 00,00,00,00,00,00,01,01
+09050 DATA 07,07,07,7F,FF,FF,FF,FF
+09060 DATA 00,00,00,00,00,00,80,80
+09070 DATA E0,E0,E0,FE,FF,FF,FF,FF
+09080 ' TORPEDO
+09090 DATA 00,00,00,00,00,00,00,00
+09100 DATA 00,01,01,01,01,01,01,01
+09110 DATA 00,00,00,00,00,00,00,00
+09120 DATA 00,80,80,80,80,80,80,80
+09130 DATA *
+09140 ' ALIEN 
+01000 DATA 00,00,00,00,00,00,00,00
+01010 DATA 18,3C,7E,DB,FF,24,5A,A5
+01020 DATA 18,3C,7E,DB,FF,24,5A,A5
+01030 DATA 18,3C,7E,DB,FF,5A,81,42
+09240 DATA *
+09250 ' TABELA DE CORES
+09260 DATA 31,31,31,31,31,31,31,31
+09270 DATA 31,31,31,31,31,31,31,31
+09280 DATA 31,31,31,31,31,31,31,31
+09290 DATA 31,31,31,31,31,31,31,31
+09300 DATA *
