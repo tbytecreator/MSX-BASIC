@@ -19,28 +19,35 @@
 00200 ' ************************************
 00210 ' INICIALIZA JOGO
 00220 ' ************************************
+00230 AL=1:CA=2:LA=2
 00240 RESTORE 9000
 00260 GOSUB 6000 : ' TABELA DE PADROES
 00270 GOSUB 7000 : ' TABELA DE CORES 
-00280 ' CARREGA A POSICAO DOS ALIENS
-00290 FOR I = 0 TO 4
-00300    FOR J = 0 TO 10
-00310        EX(I,J)=6+J
-00320        EY(I,J)=2+I
-00330    NEXT J
-00340 NEXT I
 
 00400 ' ************************************
-00410 ' POSICIONA OS ALIENS
+00410 ' GAME LOOP  
 00420 ' ************************************
-00430 FOR I = 0 TO 4
-00440    FOR J = 0 TO 10
-00450        AL = J MOD 2:CL=EX(I,J):LN=EY(I,J)
-00460        VPOKE &H1800+CL+LN*32,AL 
-00470    NEXT J
-00480 NEXT I
-00490 OP$=INPUT$(1)
-00500 END
+00430 ' CARREGA A POSICAO DOS ALIENS
+00440 FOR I = 0 TO 4
+00450    FOR J = 0 TO 10
+00460        EX(I,J)=(J+1)*CA
+00470        EY(I,J)=LA+I
+00480    NEXT J
+00490 NEXT I
+
+05000 ' ************************************
+05010 ' POSICIONA OS ALIENS
+05020 ' ************************************
+05030 IF AL = 2 THEN AL = 1 ELSE AL = 2 
+05040 FOR I = 0 TO 4
+05050    FOR J = 0 TO 10
+05060        CL=EX(I,J):LN=EY(I,J)
+05070        VPOKE &H1800+CL+LN*32,AL 
+05080    NEXT J
+05090 NEXT I
+05100 CA = CA + 1
+05110 IF CA>20 THEN VX=VX*-1:LA= LA + 1
+05120 END
 
 06000 ' ************************************
 06010 ' CARREGA A TABELA DE PADROES 

@@ -1,6 +1,16 @@
 WBS Tarefas
 ===========
 
-1. Os alienigenas são uma matrix de 6 por 6 
+1. Os alienigenas são uma matrix de 11 por 5 
     1.1 Criar os aliens que faltam 
     1.2 Criar um algoritimo que coloque um alien em uma posição especifica
+    1.3 Colocar os aliens em uma posição inicial
+    1.4 Desenhar os aliens 
+2. Criar um algoritimo que mova os aliens 
+    2.1 Deslocar todos os aliens uma coluna para direita 
+    2.2 Se os aliens passarem da posição 39 no eixo X 
+        2.2.1 Inverta o movimento para a esquerda 
+        2.2.2 Desça os alienigenas uma linha 
+    2.3 Se os alienigenas passarem da posição 22 no eixo y 
+        2.3.1 Encaminhe para a rotina do fim do jogo 
+        
