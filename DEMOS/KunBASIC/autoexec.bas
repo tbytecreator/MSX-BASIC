@@ -1,0 +1,3 @@
+10 ' loader
+20 BLOAD"XBASIC.BIN",R
+30 RUN "DEMO.BAS"
