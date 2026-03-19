@@ -1,0 +1,1 @@
+flatpak run org.openmsx.openMSX -machine Gradiente_Expert_GPC-1 -ext DDX_3.0 -diska .
